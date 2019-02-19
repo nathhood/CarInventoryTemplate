@@ -11,6 +11,7 @@ namespace CarInventory
 {
     public partial class Form1 : Form
     {
+        List<Car> cars = new List<Car>();
 
         public Form1()
         {
@@ -19,7 +20,26 @@ namespace CarInventory
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            string make, colour;
+            int year, mileage;
 
+            make = makeInput.Text;
+            colour = colourInput.Text;
+            year = Convert.ToInt16(yearInput.Text);
+            mileage = Convert.ToInt32(mileageInput.Text);
+
+            Car c = new Car(make, colour, year, mileage);
+            cars.Add(c);
+
+            outputLabel.Text = "";
+
+            for (int i = 0; i < cars.Count; i++)
+            {
+                outputLabel.Text += cars[i].year + " " +
+                    cars[i].make + " " +
+                    cars[i].colour + " " +
+                    cars[i].mileage + "\n";
+            }
         }
     }
 }
